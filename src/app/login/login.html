@@ -1,0 +1,15 @@
+<div class="login-form-wrapper">
+    <form [formGroup]="form" class="login-form" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="login-wrapper full-width">
+            <mat-label>Login</mat-label>
+            <input matInput id="input-login" type="text" formControlName="login" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="password-wrapper full-width">
+            <mat-label>Password</mat-label>
+            <input matInput id="input-password" type="password" formControlName="password" />
+        </mat-form-field>
+        <div>
+            <button mat-raised-button color="primary" type="submit">Login</button>
+        </div>
+    </form>
+</div>
