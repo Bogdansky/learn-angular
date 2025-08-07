@@ -1,0 +1,189 @@
+.user-profile-wizard {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+
+  .wizard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+
+    h1 {
+      margin: 0;
+      color: #333;
+      font-weight: 500;
+      font-size: 1.8em;
+    }
+
+    .go-home-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+        transform: translateY(-1px);
+      }
+      
+      mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  .step-content {
+    padding: 20px 0;
+    min-height: 400px;
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    h3 {
+      margin: 0;
+      color: #555;
+      font-weight: 400;
+      font-size: 1.1em;
+    }
+
+    p {
+      margin-bottom: 20px;
+      color: #666;
+      line-height: 1.5;
+    }
+  }
+
+  .form-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+
+    .full-width {
+      flex: 1;
+      width: 100%;
+    }
+
+    .half-width {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .address-section,
+  .employment-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fafafa;
+  }
+
+  .add-button {
+    margin: 20px 0;
+    
+    mat-icon {
+      margin-right: 8px;
+    }
+  }
+
+  .step-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+
+    button {
+      min-width: 100px;
+    }
+  }
+
+  .still-employed-checkbox {
+    margin: 10px 0;
+  }
+
+  // Responsive design
+  @media (max-width: 768px) {
+    padding: 10px;
+
+    .form-row {
+      flex-direction: column;
+      gap: 8px;
+
+      .half-width,
+      .full-width {
+        width: 100%;
+      }
+    }
+
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+
+      button {
+        align-self: flex-end;
+      }
+    }
+
+    .step-actions {
+      flex-direction: column;
+      gap: 10px;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+
+  // Material stepper customization
+  ::ng-deep {
+    .mat-stepper-horizontal-line {
+      border-top-color: #e0e0e0;
+    }
+
+    .mat-step-header {
+      .mat-step-icon {
+        background-color: #f5f5f5;
+        color: #666;
+      }
+
+      .mat-step-icon-selected {
+        background-color: #1976d2;
+        color: white;
+      }
+
+      .mat-step-icon-state-done {
+        background-color: #4caf50;
+        color: white;
+      }
+    }
+
+    .mat-step-label {
+      font-weight: 500;
+    }
+
+    .mat-step-label-selected {
+      color: #1976d2;
+    }
+  }
+}

@@ -1,0 +1,149 @@
+<div class="user-profile-container">
+  <!-- Header -->
+  <div class="profile-header">
+    <h1>User Profile</h1>
+    <div class="header-actions">
+      <button mat-button color="primary" (click)="onGoHome()">
+        <mat-icon>home</mat-icon>
+        Go Home
+      </button>
+      <button mat-raised-button color="accent" (click)="onEditProfile()">
+        <mat-icon>edit</mat-icon>
+        Edit Profile
+      </button>
+    </div>
+  </div>
+
+  @if (userProfile) {
+    <div class="profile-content">
+      
+      <!-- General Information Card -->
+      <mat-card class="profile-section">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>person</mat-icon>
+            General Information
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="label">Full Name:</span>
+              <span class="value">{{ getFullName() }}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Date of Birth:</span>
+              <span class="value">{{ getFormattedDate(userProfile.dateOfBirth) }}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Age:</span>
+              <span class="value">{{ getAge() }} years old</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Gender:</span>
+              <span class="value">{{ getFormattedGender() }}</span>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Addresses Card -->
+      <mat-card class="profile-section">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>location_on</mat-icon>
+            Addresses
+          </mat-card-title>
+          <mat-card-subtitle>{{ userProfile.addresses.length }} address{{ userProfile.addresses.length !== 1 ? 'es' : '' }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          @for (address of userProfile.addresses; track address; let i = $index) {
+            <div class="address-item">
+              <div class="address-header">
+                <h3>Address {{ i + 1 }}</h3>
+                <mat-chip-set>
+                  <mat-chip>{{ getCountryName(address.country) }}</mat-chip>
+                </mat-chip-set>
+              </div>
+              <div class="address-details">
+                <div class="address-line">
+                  <mat-icon>location_city</mat-icon>
+                  <span>{{ address.city }}, {{ address.region }}</span>
+                </div>
+                <div class="address-line">
+                  <mat-icon>home</mat-icon>
+                  <span>{{ address.street }}, {{ address.building }}{{ address.apartment ? ', Apt ' + address.apartment : '' }}</span>
+                </div>
+              </div>
+            </div>
+            @if (i < userProfile.addresses.length - 1) {
+              <mat-divider></mat-divider>
+            }
+          }
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Employment History Card -->
+      <mat-card class="profile-section">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>work</mat-icon>
+            Employment History
+          </mat-card-title>
+          <mat-card-subtitle>{{ userProfile.employmentHistory.length }} employment record{{ userProfile.employmentHistory.length !== 1 ? 's' : '' }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          @for (employment of userProfile.employmentHistory; track employment; let i = $index) {
+            <div class="employment-item">
+              <div class="employment-header">
+                <h3>{{ employment.employer }}</h3>
+                <div class="employment-status">
+                  @if (employment.isStillEmployed) {
+                    <mat-chip color="primary" selected>
+                      <mat-icon>work</mat-icon>
+                      Current
+                    </mat-chip>
+                  } @else {
+                    <mat-chip color="accent">
+                      <mat-icon>history</mat-icon>
+                      Previous
+                    </mat-chip>
+                  }
+                </div>
+              </div>
+              <div class="employment-details">
+                <div class="employment-line">
+                  <mat-icon>schedule</mat-icon>
+                  <span>{{ getFormattedDate(employment.dateOfStart) }} - {{ getFormattedDate(employment.dateOfEnd) }}</span>
+                </div>
+                <div class="employment-line">
+                  <mat-icon>timer</mat-icon>
+                  <span>Duration: {{ getEmploymentDuration(employment) }}</span>
+                </div>
+              </div>
+            </div>
+            @if (i < userProfile.employmentHistory.length - 1) {
+              <mat-divider></mat-divider>
+            }
+          }
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+  } @else {
+    <div class="no-profile">
+      <mat-card>
+        <mat-card-content>
+          <div class="no-profile-content">
+            <mat-icon>person_off</mat-icon>
+            <h2>No Profile Data</h2>
+            <p>There is no user profile data to display.</p>
+            <button mat-raised-button color="primary" (click)="onEditProfile()">
+              Create Profile
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  }
+</div>
