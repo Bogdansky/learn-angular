@@ -1,0 +1,1 @@
+export {passwordMatchValidator} from './passwordMatchValidator'

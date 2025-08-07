@@ -1,0 +1,41 @@
+<div class="reg-form-wrapper">
+    <form [formGroup]="form" class="reg-form" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="login-wrapper full-width" hideRequiredMarker>
+            <mat-label>Login</mat-label>
+            <input matInput id="input-login" type="text" formControlName="login" />
+            @if (loginControl?.hasError('required')) {
+                <mat-error>
+                    Login is required
+                </mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="password-wrapper full-width" hideRequiredMarker>
+            <mat-label>Password</mat-label>
+            <input matInput id="input-password" type="password" formControlName="password" toggle-password #toggle="toggle" />
+            @if (passwordControl?.hasError('required')) {
+                <mat-error>
+                    Password is required
+                </mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="password-wrapper full-width" hideRequiredMarker>
+            <mat-label>Repeat password</mat-label>
+            <input matInput id="input-password" type="password" formControlName="repeatPassword" toggle-password #repeatToggle="toggle" />
+            @if (repeatPasswordControl?.hasError('mismatch')) {
+                <mat-error>
+                    Passwords should match
+                </mat-error>
+            }
+        </mat-form-field>
+        <div>
+            <input type="checkbox" [checked]="toggle.toggled" (change)="togglePasswords([toggle, repeatToggle])"/>
+            <label>Show password</label>
+        </div>
+        <div>
+            <button mat-raised-button color="primary" type="submit">Sign up</button>
+        </div>
+        <div>
+            <a mat-raised-button color="primary" href="/login">Already have account? Proceed and sign in</a>
+        </div>
+    </form>
+</div>
